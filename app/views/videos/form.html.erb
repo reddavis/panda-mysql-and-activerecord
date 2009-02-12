@@ -1,0 +1,26 @@
+<% throw_content(:head) do %>
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function() { 
+    jQuery.nginxUploadProgress({uuid: "<%= params[:id] %>"}); // Everything happens in jquery.nginxUploadProgress.js
+});
+</script>
+<% end %>
+
+<div id="pandaloader">
+    <div id="error"></div>
+    
+	<div id="uploader">
+		<form id="upload" enctype="multipart/form-data" action="/videos/<%= params[:id] %>/upload?X-Progress-ID=<%= params[:id] %>" method="post">
+			<input name="file" type="file" />
+			<input name="iframe" type="hidden" value="true" />
+			<input type="submit" value="Upload" />
+		</form>
+	</div>
+
+	<div id="uploading" style="display:none;">
+		<div id="progress" class="bar">
+			<div id="progressbar">&nbsp;</div>
+		</div>
+		<div id="eta"></div>
+	</div>
+</div>
